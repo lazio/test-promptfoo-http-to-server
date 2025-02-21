@@ -20,7 +20,7 @@ The server will run on `http://localhost:3000` by default.
 npm install -g promptfoo
 
 2. Run the evaluation:
-npx promptfoo@latest eval
+npm promptfoo@latest eval
 
 3. View the results in a web interface:
-npx promptfoo@latest view
+npm promptfoo@latest view
