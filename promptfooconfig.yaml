@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://promptfoo.dev/config-schema.json
+description: "Will Wise"
+
+providers:
+  - id: http
+    config:
+      url: "http://localhost:3000/generate"
+      method: "POST"
+      headers:
+        "Content-Type": "application/json"
+      body:
+        prompt: "{{prompt}}"
+        model: "{{model}}"
+        max_tokens: 100
+      transformResponse: "json.output"
+
+prompts:
+  - |
+    Answer this question: {{query}}
+    Using this context: {{context}}
+
+tests:
+  - vars:
+      query: "What is our paternityleave policy?"
+      context: ""
+    assert:
+      - type: context-recall
+        threshold: 0.9
+        value: |
+          Employees get 4 months paid maternity leave.
+          Leave can be taken before or after birth.
+          Additional unpaid leave is available upon request.
